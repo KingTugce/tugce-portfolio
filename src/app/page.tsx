@@ -44,16 +44,13 @@ export default function Home() {
 
       {/* Hero / About */}
       <section id="about" className="max-w-4xl flex flex-col gap-4 mb-14">
-        <h1 className="text-3xl md:text-4xl font-semibold text-slate-50 leading-tight">
-          I design & build interfaces that behave like products,
-          not static pages.
-        </h1>
-        <p className="text-sm md:text-base text-slate-400 max-w-2xl">
-          I&apos;m a self-taught software developer and product-minded builder
-          who blends clean engineering with subtle game mechanics:
-          focused UX, hidden depth, and systems that feel alive without
-          losing clarity or performance.
-        </p>
+<h1 className="text-3xl md:text-4xl font-semibold text-slate-50 leading-tight">
+  I design and build interfaces that work like real products—clear, reliable, and thoughtfully engineered.
+</h1>
+<p className="text-sm md:text-base text-slate-400 max-w-2xl">
+  I’m a product-minded developer who values clean structure, purpose-driven design, and experiences that simply feel right to use.
+</p>
+
       </section>
 
       {/* Projects */}
