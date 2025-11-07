@@ -1,6 +1,13 @@
+"use client";
+
+import { useState } from "react";
+import { Mode, ModeOverlay } from "@/components/ModeOverlay";
+
 export default function Home() {
+  const [mode, setMode] = useState<Mode>(null);
+
   return (
-    <main className="min-h-screen px-8 md:px-14 py-8 bg-slate-950 text-slate-50">
+    <main className="min-h-screen px-8 md:px-14 py-8 bg-slate-950 text-slate-50 relative">
       {/* Top navigation */}
       <header className="flex items-center justify-between gap-6 mb-16">
         {/* Brand */}
@@ -12,7 +19,7 @@ export default function Home() {
             Tugce S King
           </span>
           <span className="text-[10px] text-slate-500">
-            Software • Product • Playful Systems
+            Software • Product • Systems Thinking
           </span>
         </div>
 
@@ -32,25 +39,32 @@ export default function Home() {
           </a>
         </nav>
 
-        {/* Subtle secret hook */}
-        <div className="flex items-center">
+        {/* Top-right: Build + Inspect cluster */}
+        <div className="hidden md:flex flex-col items-end gap-1">
           <button
-            className="text-[9px] text-slate-500 hover:text-amber-300 border border-transparent hover:border-amber-400/70 rounded-full px-3 py-1 transition-all"
+            onClick={() => setMode("build")}
+            className="text-[9px] text-sky-400/85 hover:text-sky-300 border border-sky-500/40 hover:border-sky-400 rounded-full px-3 py-1 transition-all"
           >
-            ⚠️ Don&apos;t click
+            Build ▸
+          </button>
+          <button
+            onClick={() => setMode("inspect")}
+            className="text-[8px] text-slate-500 hover:text-amber-300 transition-all"
+          >
+            Inspect {"</>"}
           </button>
         </div>
       </header>
 
       {/* Hero / About */}
       <section id="about" className="max-w-4xl flex flex-col gap-4 mb-14">
-<h1 className="text-3xl md:text-4xl font-semibold text-slate-50 leading-tight">
-  I design and build interfaces that work like real products—clear, reliable, and thoughtfully engineered.
-</h1>
-<p className="text-sm md:text-base text-slate-400 max-w-2xl">
-  I’m a product-minded developer who values clean structure, purpose-driven design, and experiences that simply feel right to use.
-</p>
-
+        <h1 className="text-3xl md:text-4xl font-semibold text-slate-50 leading-tight">
+          I design and build interfaces that work like real products—clear, reliable, and thoughtfully engineered.
+        </h1>
+        <p className="text-sm md:text-base text-slate-400 max-w-2xl">
+          I’m a product-minded developer who values clean structure, purpose-driven design,
+          and experiences that simply feel right to use.
+        </p>
       </section>
 
       {/* Projects */}
@@ -66,12 +80,11 @@ export default function Home() {
               Clarity — AI-Assisted Self-Therapy Journal
             </p>
             <p className="text-[11px] text-slate-400 mb-1.5">
-              Guided journaling experience with AI prompts, emotional tagging,
-              and exportable insights. Built with Next.js, Supabase auth, and a
-              clean privacy-first architecture.
+              Guided journaling with AI prompts, sentiment, and exportable insights.
+              Built with Next.js, Supabase, and privacy-first flows.
             </p>
             <p className="text-[10px] text-slate-500">
-              Focus: UX systems, data modeling, secure flows.
+              Focus: UX systems, data modeling, authentication.
             </p>
           </div>
 
@@ -80,35 +93,29 @@ export default function Home() {
             <p className="text-xs text-emerald-300 font-medium mb-1">
               FutureMe — Minimalist Reflection App
             </p>
-            <p className="text-[11px] text-slate-400 mb-1.5">
-              Lightweight journaling tool designed for speed and daily habit,
-              with a focus on simplicity, fast load, and frictionless input.
+            <p className="text:[11px] text-slate-400 mb-1.5">
+              Fast, minimal daily journaling experience designed for habit.
             </p>
             <p className="text-[10px] text-slate-500">
-              Focus: front-end craft, micro-interactions, performance.
+              Focus: performance, micro-interactions, simplicity.
             </p>
           </div>
 
-          {/* Placeholder: more coding projects */}
+          {/* Reserved slots */}
           <div className="border border-slate-800 rounded-2xl p-4 bg-slate-950/40">
             <p className="text-xs text-slate-300 font-medium mb-1">
-              Project Slot — Add your next build
+              Engineering • Integrations
             </p>
             <p className="text-[11px] text-slate-500">
-              This tile is reserved for another shipped project:
-              API integrations, dashboards, multiplayer ideas, or
-              whatever proves your range.
+              Reserved for APIs, backends, or infra that support real users.
             </p>
           </div>
-
           <div className="border border-slate-800 rounded-2xl p-4 bg-slate-950/40">
             <p className="text-xs text-slate-300 font-medium mb-1">
-              Project Slot — Systems & Automation
+              Systems • Automation
             </p>
             <p className="text-[11px] text-slate-500">
-              Use this space to highlight a script, internal tool,
-              or automation that shows your ability to think like an
-              engineer inside a real product environment.
+              Internal tools and workflows that compound leverage.
             </p>
           </div>
         </div>
@@ -117,23 +124,42 @@ export default function Home() {
       {/* Contact */}
       <section id="contact" className="max-w-4xl mb-10">
         <p className="text-[11px] text-slate-500 mb-2">
-          Open to software engineering, technical product, and creative
-          interaction roles.
+          Open to software engineering, technical product, and system-focused creative roles.
         </p>
         <a
           href="mailto:tugcesimsek.king@gmail.com"
-          className="inline-flex items-center px-5 py-2 rounded-full border border-slate-600 text-[11px] text-slate-200 hover:border-amber-400 hover:text-amber-300 hover:shadow-[0_0_18px_rgba(251,191,36,0.22)] transition-all"
+          className="inline-flex items-center px-5 py-2 rounded-full border border-slate-600 text-[11px] text-slate-200 hover:border-emerald-400 hover:text-emerald-300 hover:shadow-[0_0_18px_rgba(16,185,129,0.22)] transition-all"
         >
           Contact
         </a>
       </section>
 
-      {/* Play hook — subtle bottom-right */}
+      {/* Right-center: vertical "Don't click" – sends to play mode */}
       <button
-        className="fixed bottom-5 right-6 text-[9px] text-slate-500 hover:text-emerald-300 bg-slate-950/70 border border-slate-700/60 hover:border-emerald-400/70 rounded-full px-3 py-1 backdrop-blur-sm transition-all"
+        onClick={() => setMode("play")}
+        className="hidden md:flex items-center rotate-90 origin-right gap-1 text-[8px] text-slate-600 hover:text-amber-300 fixed top-1/2 right-1"
       >
-        Play ▸
+        ⚠️ Don&apos;t click
       </button>
+
+      {/* Bottom-left: about:system */}
+      <button
+        onClick={() => setMode("system")}
+        className="fixed bottom-5 left-6 text-[8px] text-slate-600 hover:text-slate-200 border border-slate-700/70 hover:border-slate-300 rounded-full px-3 py-1 bg-slate-950/80 backdrop-blur-sm transition-all"
+      >
+        about:system
+      </button>
+
+      {/* Bottom-right: Playground */}
+      <button
+        onClick={() => setMode("play")}
+        className="fixed bottom-5 right-6 text-[8px] text-slate-500 hover:text-emerald-300 bg-slate-950/80 border border-slate-700/70 hover:border-emerald-400/70 rounded-full px-3 py-1 backdrop-blur-sm transition-all"
+      >
+        Playground ▸
+      </button>
+
+      {/* Unified overlay */}
+      <ModeOverlay mode={mode} onClose={() => setMode(null)} />
     </main>
   );
 }
