@@ -39,7 +39,7 @@ export default function Home() {
           </a>
         </nav>
 
-        {/* Top-right: Build + Inspect cluster */}
+        {/* Top-right cluster: Build + Inspect */}
         <div className="hidden md:flex flex-col items-end gap-1">
           <button
             onClick={() => setMode("build")}
@@ -48,10 +48,10 @@ export default function Home() {
             Build ▸
           </button>
           <button
-            onClick={() => setMode("inspect")}
-            className="text-[8px] text-slate-500 hover:text-amber-300 transition-all"
+            onClick={() => setMode("chaos")}
+            className="text-[8px] text-pink-400/80 hover:text-pink-300 transition-all"
           >
-            Inspect {"</>"}
+            Don&apos;t click
           </button>
         </div>
       </header>
@@ -62,8 +62,8 @@ export default function Home() {
           I design and build interfaces that work like real products—clear, reliable, and thoughtfully engineered.
         </h1>
         <p className="text-sm md:text-base text-slate-400 max-w-2xl">
-          I’m a product-minded developer who values clean structure, purpose-driven design,
-          and experiences that simply feel right to use.
+          I&apos;m a product-minded developer who cares about clean structure, honest UX,
+          and small details that make people feel considered.
         </p>
       </section>
 
@@ -80,11 +80,11 @@ export default function Home() {
               Clarity — AI-Assisted Self-Therapy Journal
             </p>
             <p className="text-[11px] text-slate-400 mb-1.5">
-              Guided journaling with AI prompts, sentiment, and exportable insights.
-              Built with Next.js, Supabase, and privacy-first flows.
+              Guided journaling with AI prompts and exportable insights.
+              Built with Next.js, Supabase, and a privacy-conscious flow.
             </p>
             <p className="text-[10px] text-slate-500">
-              Focus: UX systems, data modeling, authentication.
+              Focus: UX systems, auth, structured data.
             </p>
           </div>
 
@@ -93,11 +93,11 @@ export default function Home() {
             <p className="text-xs text-emerald-300 font-medium mb-1">
               FutureMe — Minimalist Reflection App
             </p>
-            <p className="text:[11px] text-slate-400 mb-1.5">
-              Fast, minimal daily journaling experience designed for habit.
+            <p className="text-[11px] text-slate-400 mb-1.5">
+              Lightweight daily journaling for focus & habit, tuned for speed.
             </p>
             <p className="text-[10px] text-slate-500">
-              Focus: performance, micro-interactions, simplicity.
+              Focus: performance, minimal UI, interaction polish.
             </p>
           </div>
 
@@ -107,15 +107,16 @@ export default function Home() {
               Engineering • Integrations
             </p>
             <p className="text-[11px] text-slate-500">
-              Reserved for APIs, backends, or infra that support real users.
+              Placeholder for API work, backend logic, or infra supporting real users.
             </p>
           </div>
+
           <div className="border border-slate-800 rounded-2xl p-4 bg-slate-950/40">
             <p className="text-xs text-slate-300 font-medium mb-1">
               Systems • Automation
             </p>
             <p className="text-[11px] text-slate-500">
-              Internal tools and workflows that compound leverage.
+              Placeholder for internal tools and automation that compound time.
             </p>
           </div>
         </div>
@@ -124,7 +125,7 @@ export default function Home() {
       {/* Contact */}
       <section id="contact" className="max-w-4xl mb-10">
         <p className="text-[11px] text-slate-500 mb-2">
-          Open to software engineering, technical product, and system-focused creative roles.
+          Open to software engineering, technical product, and thoughtful interaction roles.
         </p>
         <a
           href="mailto:tugcesimsek.king@gmail.com"
@@ -133,14 +134,6 @@ export default function Home() {
           Contact
         </a>
       </section>
-
-      {/* Right-center: vertical "Don't click" – sends to play mode */}
-      <button
-        onClick={() => setMode("play")}
-        className="hidden md:flex items-center rotate-90 origin-right gap-1 text-[8px] text-slate-600 hover:text-amber-300 fixed top-1/2 right-1"
-      >
-        ⚠️ Don&apos;t click
-      </button>
 
       {/* Bottom-left: about:system */}
       <button
@@ -158,7 +151,7 @@ export default function Home() {
         Playground ▸
       </button>
 
-      {/* Unified overlay */}
+      {/* Overlay portal */}
       <ModeOverlay mode={mode} onClose={() => setMode(null)} />
     </main>
   );
