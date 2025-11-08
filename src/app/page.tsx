@@ -1,13 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { ActiveMode, Mode } from "../components/GameModes";
-
 export default function Home() {
-  const [mode, setMode] = useState<Mode>(null);
-
   return (
-    <main className="min-h-screen px-8 md:px-14 py-8 bg-slate-950 text-slate-50 relative">
+    <main className="min-h-screen px-8 md:px-14 py-8 bg-slate-950 text-slate-50">
       {/* Top navigation */}
       <header className="flex items-center justify-between gap-6 mb-16">
         {/* Brand */}
@@ -38,74 +33,61 @@ export default function Home() {
             Contact
           </a>
         </nav>
-
-        {/* Top-right: Play + Build */}
-        <div className="hidden md:flex flex-col items-end gap-1">
-          <button
-            onClick={() => setMode("play")}
-            className="text-[9px] text-emerald-300/90 hover:text-emerald-300 border border-emerald-400/50 hover:border-emerald-300 rounded-full px-3 py-1 transition-all"
-          >
-            Play ▸
-          </button>
-          <button
-            onClick={() => setMode("build")}
-            className="text-[8px] text-sky-400/85 hover:text-sky-300 transition-all"
-          >
-            Build mode
-          </button>
-        </div>
       </header>
 
       {/* Hero / About */}
       <section id="about" className="max-w-4xl flex flex-col gap-4 mb-14">
         <h1 className="text-3xl md:text-4xl font-semibold text-slate-50 leading-tight">
-          Design and engineering for interfaces that behave like real products:
-          clear, reliable, and thoughtfully structured.
+          I design and build interfaces that work like real products—clear,
+          reliable, and thoughtfully engineered.
         </h1>
         <p className="text-sm md:text-base text-slate-400 max-w-2xl">
-          Focus on systems that are easy to navigate, considerate to use, and
-          quietly expressive in their details.
+          I&apos;m a product-minded developer who values clean structure,
+          purpose-driven design, and experiences that simply feel right to use.
         </p>
       </section>
 
       {/* Projects */}
       <section id="projects" className="max-w-5xl space-y-4 mb-14">
         <h2 className="text-sm font-semibold text-slate-200 tracking-wide">
-          Selected projects
+          Selected Projects
         </h2>
 
         <div className="grid md:grid-cols-2 gap-4">
+          {/* Clarity */}
           <div className="border border-slate-800 rounded-2xl p-4 bg-slate-900/40 hover:bg-slate-900/70 transition-colors">
             <p className="text-xs text-amber-300 font-medium mb-1">
-              Clarity — AI-assisted reflection journal
+              Clarity — AI-Assisted Self-Therapy Journal
             </p>
             <p className="text-[11px] text-slate-400 mb-1.5">
-              Guided journaling with structured prompts, sentiment-aware notes,
-              and exportable insights. Next.js, Supabase, privacy-focused flows.
+              Guided journaling with structured prompts, sentiment tagging, and
+              exportable insights. Built with Next.js and a privacy-conscious flow.
             </p>
             <p className="text-[10px] text-slate-500">
-              Emphasis on information architecture, state handling, and trust.
+              Focus: UX systems, data modeling, secure authentication.
             </p>
           </div>
 
+          {/* FutureMe */}
           <div className="border border-slate-800 rounded-2xl p-4 bg-slate-900/40 hover:bg-slate-900/70 transition-colors">
             <p className="text-xs text-emerald-300 font-medium mb-1">
-              FutureMe — minimalist daily logging
+              FutureMe — Minimalist Reflection App
             </p>
             <p className="text-[11px] text-slate-400 mb-1.5">
-              Fast, distraction-free journaling surface tuned for repetition and ease.
+              Lightweight daily journaling focused on speed, clarity, and habit.
             </p>
             <p className="text-[10px] text-slate-500">
-              Emphasis on performance, typography, and micro-interactions.
+              Focus: performance, minimal UI, and micro-interactions.
             </p>
           </div>
 
+          {/* Reserved slots */}
           <div className="border border-slate-800 rounded-2xl p-4 bg-slate-950/40">
             <p className="text-xs text-slate-300 font-medium mb-1">
               Engineering • Integrations
             </p>
             <p className="text-[11px] text-slate-500">
-              Slot reserved for API design, backend work, or messaging systems supporting real users.
+              Placeholder for API, backend, or infra work supporting real users.
             </p>
           </div>
 
@@ -114,16 +96,26 @@ export default function Home() {
               Systems • Automation
             </p>
             <p className="text-[11px] text-slate-500">
-              Slot reserved for internal tools and automation that compound time and reliability.
+              Placeholder for internal tools and automation that compound time.
             </p>
           </div>
         </div>
       </section>
 
+      {/* Experience placeholder (we can flesh this out later) */}
+      <section id="experience" className="max-w-4xl mb-10">
+        <h2 className="text-sm font-semibold text-slate-200 tracking-wide mb-2">
+          Experience
+        </h2>
+        <p className="text-[11px] text-slate-500">
+          To be filled with concise, relevant roles and responsibilities.
+        </p>
+      </section>
+
       {/* Contact */}
       <section id="contact" className="max-w-4xl mb-10">
         <p className="text-[11px] text-slate-500 mb-2">
-          Open to roles and collaborations where design, engineering, and systems thinking meet.
+          Open to roles where design, engineering, and systems thinking meet.
         </p>
         <a
           href="mailto:tugcesimsek.king@gmail.com"
@@ -133,24 +125,18 @@ export default function Home() {
         </a>
       </section>
 
-      {/* Bottom-left: Don’t click portal */}
+      {/* Portal placeholders (no game logic yet) */}
       <button
-        onClick={() => setMode("dontclick")}
-        className="fixed bottom-5 left-6 text-[8px] text-pink-400/90 hover:text-pink-300 border border-pink-400/40 hover:border-pink-300 rounded-full px-3 py-1 bg-slate-950/85 backdrop-blur-sm transition-all"
+        className="hidden md:flex fixed top-6 right-8 text-[9px] text-emerald-300/80 border border-emerald-400/40 rounded-full px-3 py-1 cursor-default"
+      >
+        Play
+      </button>
+
+      <button
+        className="hidden md:flex fixed bottom-6 right-8 text-[9px] text-amber-300/80 border border-amber-400/40 rounded-full px-3 py-1 cursor-default"
       >
         Don&apos;t click
       </button>
-
-      {/* Bottom-right: Focus portal */}
-      <button
-        onClick={() => setMode("focus")}
-        className="fixed bottom-5 right-6 text-[8px] text-violet-300/90 hover:text-violet-200 border border-violet-400/40 hover:border-violet-300 rounded-full px-3 py-1 bg-slate-950/85 backdrop-blur-sm transition-all"
-      >
-        Focus
-      </button>
-
-      {/* Active game mode */}
-      <ActiveMode mode={mode} onExit={() => setMode(null)} />
     </main>
   );
 }
