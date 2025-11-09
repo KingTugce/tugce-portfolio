@@ -1,8 +1,13 @@
 "use client";
 
+import { useState } from "react";
+import { PlayOverlay } from "../components/PlayOverlay";
+
 export default function Home() {
+  const [playOpen, setPlayOpen] = useState(false);
+
   return (
-    <main className="min-h-screen px-8 md:px-14 py-8 bg-slate-950 text-slate-50">
+    <main className="min-h-screen px-8 md:px-14 py-8 bg-slate-950 text-slate-50 relative">
       {/* Top navigation */}
       <header className="flex items-center justify-between gap-6 mb-16">
         {/* Brand */}
@@ -33,6 +38,16 @@ export default function Home() {
             Contact
           </a>
         </nav>
+
+        {/* Top-right portals */}
+        <div className="hidden md:flex flex-col items-end gap-1">
+          <button
+            onClick={() => setPlayOpen(true)}
+            className="text-[9px] text-emerald-300/90 border border-emerald-400/50 rounded-full px-3 py-1 hover:text-emerald-300 hover:border-emerald-300 transition-colors"
+          >
+            Play
+          </button>
+        </div>
       </header>
 
       {/* Hero / About */}
@@ -102,7 +117,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Experience placeholder (we can flesh this out later) */}
+      {/* Experience */}
       <section id="experience" className="max-w-4xl mb-10">
         <h2 className="text-sm font-semibold text-slate-200 tracking-wide mb-2">
           Experience
@@ -125,18 +140,15 @@ export default function Home() {
         </a>
       </section>
 
-      {/* Portal placeholders (no game logic yet) */}
-      <button
-        className="hidden md:flex fixed top-6 right-8 text-[9px] text-emerald-300/80 border border-emerald-400/40 rounded-full px-3 py-1 cursor-default"
-      >
-        Play
-      </button>
-
+      {/* Don’t click (bottom-right placeholder) */}
       <button
         className="hidden md:flex fixed bottom-6 right-8 text-[9px] text-amber-300/80 border border-amber-400/40 rounded-full px-3 py-1 cursor-default"
       >
         Don&apos;t click
       </button>
+
+      {/* Play universe overlay */}
+      <PlayOverlay open={playOpen} onClose={() => setPlayOpen(false)} />
     </main>
   );
 }
