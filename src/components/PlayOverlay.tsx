@@ -4,8 +4,8 @@ import { useEffect, useRef } from "react";
 
 type Star = {
   id: number;
-  x: number; // 0-1
-  y: number; // 0-1
+  x: number; // 0–1
+  y: number; // 0–1
   mag: number;
 };
 
@@ -19,7 +19,7 @@ export function PlayOverlay({ open, onClose }: PlayOverlayProps) {
   const rafRef = useRef<number>();
   const starsRef = useRef<Star[] | null>(null);
 
-  // Load stars once (from public/data)
+  // load star data when opened
   useEffect(() => {
     if (!open) return;
 
@@ -32,10 +32,11 @@ export function PlayOverlay({ open, onClose }: PlayOverlayProps) {
         const data = (await res.json()) as Star[];
         if (!cancelled) {
           starsRef.current = data;
-          startAnimation();
+          start();
         }
       } catch {
-        // fail silently; no need for user messaging here
+        // silent fail, still show empty sky
+        start();
       }
     };
 
@@ -49,24 +50,19 @@ export function PlayOverlay({ open, onClose }: PlayOverlayProps) {
     return () => {
       cancelled = true;
       window.removeEventListener("keydown", handleKey);
-      stopAnimation();
+      stop();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
   useEffect(() => {
-    if (open) {
-      startAnimation();
-    } else {
-      stopAnimation();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (!open) stop();
   }, [open]);
 
-  const startAnimation = () => {
+  const start = () => {
     const canvas = canvasRef.current;
     const stars = starsRef.current;
-    if (!canvas || !stars || rafRef.current) return;
+    if (!canvas || rafRef.current) return;
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -75,19 +71,20 @@ export function PlayOverlay({ open, onClose }: PlayOverlayProps) {
       const dpr = window.devicePixelRatio || 1;
       const w = window.innerWidth;
       const h = window.innerHeight;
+
       if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
         canvas.width = w * dpr;
         canvas.height = h * dpr;
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
 
-      // background gradient
+      // background
       const g = ctx.createRadialGradient(
         w * 0.5,
-        h * 0.25,
+        h * 0.2,
         0,
         w * 0.5,
-        h * 0.6,
+        h * 0.7,
         Math.max(w, h)
       );
       g.addColorStop(0, "#020817");
@@ -95,11 +92,11 @@ export function PlayOverlay({ open, onClose }: PlayOverlayProps) {
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, w, h);
 
-      // slow drift based on time
       const t = performance.now() * 0.00005;
+      const starsList = stars || [];
 
-      // draw stars
-      for (const s of stars) {
+      // draw stars with subtle drift + flicker
+      for (const s of starsList) {
         const parallax = 1 + (1.6 - s.mag) * 0.06;
         const px = (s.x + t * 0.02 * parallax) % 1;
         const py = (s.y + t * 0.01 * parallax) % 1;
@@ -123,16 +120,14 @@ export function PlayOverlay({ open, onClose }: PlayOverlayProps) {
     render();
   };
 
-  const stopAnimation = () => {
+  const stop = () => {
     if (rafRef.current) {
       cancelAnimationFrame(rafRef.current);
       rafRef.current = undefined;
     }
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    // click anywhere to exit
-    e.stopPropagation();
+  const handleClick = () => {
     onClose();
   };
 
@@ -147,7 +142,7 @@ export function PlayOverlay({ open, onClose }: PlayOverlayProps) {
         ref={canvasRef}
         className="absolute inset-0 w-full h-full"
       />
-      <div className="absolute top-6 left-1/2 -translate-x-1/2 text-[9px] uppercase tracking-[0.24em] text-slate-400 pointer-events-none">
+      <div className="absolute top-6 left-1/2 -translate-x-1/2 text-[9px] uppercase tracking-[0.24em] text-slate-500 pointer-events-none">
         Sky layer
       </div>
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[8px] text-slate-500 pointer-events-none">
