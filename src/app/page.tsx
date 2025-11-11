@@ -146,33 +146,39 @@ export default function Home() {
         </a>
       </section>
 
-      {/* Don’t click (bottom-right placeholder) */}
-      <button
-        className="hidden md:flex fixed bottom-6 right-8 text-[9px] text-amber-300/80 border border-amber-400/40 rounded-full px-3 py-1 cursor-default"
-      >
-        Don&apos;t click
-      </button>
+{/* Focus – center right */}
+<button
+  onClick={() => setFocusOpen(true)}
+  className="hidden md:flex fixed top-1/2 right-10 -translate-y-1/2 z-30
+             text-[9px] text-pink-300/90 border border-pink-400/40
+             rounded-full px-3 py-1
+             hover:text-pink-100 hover:border-pink-300 transition-all"
+>
+  Focus
+</button>
 
 
-      {/* Build – center left */}
-      <button
-        onClick={() => setBuildOpen(true)}
-        className="hidden md:flex fixed top-1/2 left-6 -translate-y-1/2 z-30 text-[9px] text-sky-300/90 border border-sky-400/40 rounded-full px-3 py-1 hover:text-sky-100 hover:border-sky-300 transition-all"
-      >
-        Build
-      </button>
+{/* Build – center left */}
+<button
+  onClick={() => setBuildOpen(true)}
+  className="hidden md:flex fixed top-1/2 left-10 -translate-y-1/2 z-30
+             text-[9px] text-sky-300/90 border border-sky-400/40
+             rounded-full px-3 py-1
+             hover:text-sky-100 hover:border-sky-300 transition-all"
+>
+  Build
+</button>
 
-      {/* Focus – bottom left */}
-      <button
-        onClick={() => setFocusOpen(true)}
-        className="hidden md:flex fixed bottom-6 left-8 z-30 text-[9px] text-pink-300/90 border border-pink-400/40 rounded-full px-3 py-1 hover:text-pink-100 hover:border-pink-300 transition-all"
-      >
-        Focus
-      </button>
+{/* Don’t click – bottom right */}
+<button
+  className="hidden md:flex fixed bottom-8 right-10 z-30
+             text-[9px] text-amber-300/90 border border-amber-400/40
+             rounded-full px-3 py-1 cursor-pointer
+             hover:text-amber-100 hover:border-amber-300 transition-all"
+>
+  Don&apos;t click
+</button>
 
-
-
-      {/* Play universe overlay */}
       <PlayOverlay open={playOpen} onClose={() => setPlayOpen(false)} />
       <BuildOverlay open={buildOpen} onClose={() => setBuildOpen(false)} />
       <FocusOverlay open={focusOpen} onClose={() => setFocusOpen(false)} />
