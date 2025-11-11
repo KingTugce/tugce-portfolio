@@ -2,9 +2,15 @@
 
 import { useState } from "react";
 import { PlayOverlay } from "../components/PlayOverlay";
+import { BuildOverlay } from "../components/BuildOverlay";
+import { FocusOverlay } from "../components/FocusOverlay";
+
 
 export default function Home() {
   const [playOpen, setPlayOpen] = useState(false);
+  const [buildOpen, setBuildOpen] = useState(false);
+  const [focusOpen, setFocusOpen] = useState(false);
+
 
   return (
     <main className="min-h-screen px-8 md:px-14 py-8 bg-slate-950 text-slate-50 relative">
@@ -147,8 +153,28 @@ export default function Home() {
         Don&apos;t click
       </button>
 
+      {/* Build button */}
+<button
+  onClick={() => setBuildOpen(true)}
+  className="hidden md:flex fixed top-6 left-8 text-[9px] text-sky-300/90 border border-sky-400/40 rounded-full px-3 py-1 hover:text-sky-100 hover:border-sky-300 transition-all"
+>
+  Build
+</button>
+
+{/* Focus button */}
+<button
+  onClick={() => setFocusOpen(true)}
+  className="hidden md:flex fixed bottom-6 left-8 text-[9px] text-pink-300/90 border border-pink-400/40 rounded-full px-3 py-1 hover:text-pink-100 hover:border-pink-300 transition-all"
+>
+  Focus
+</button>
+
+
       {/* Play universe overlay */}
       <PlayOverlay open={playOpen} onClose={() => setPlayOpen(false)} />
+      <BuildOverlay open={buildOpen} onClose={() => setBuildOpen(false)} />
+      <FocusOverlay open={focusOpen} onClose={() => setFocusOpen(false)} />
+
     </main>
   );
 }
