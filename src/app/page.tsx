@@ -161,10 +161,7 @@ export default function Home() {
 {/* Build – center left */}
 <button
   onClick={() => setBuildOpen(true)}
-  className="hidden md:flex fixed top-1/2 left-10 -translate-y-1/2 z-30
-             text-[9px] text-sky-300/90 border border-sky-400/40
-             rounded-full px-3 py-1
-             hover:text-sky-100 hover:border-sky-300 transition-all"
+  className="hidden md:flex fixed bottom-6 left-1/2 -translate-x-1/2 text-[9px] text-sky-300/80 border border-sky-400/40 rounded-full px-3 py-1 hover:text-sky-100 hover:border-sky-300/60 transition-colors"
 >
   Build
 </button>
